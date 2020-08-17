@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Henlo");
         input = findViewById(R.id.input);
         output = findViewById(R.id.output);
     }
