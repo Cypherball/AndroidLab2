@@ -1,18 +1,21 @@
 package com.experiment.app2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
     private MaterialToolbar toolbar;
     private TextView input;
     private TextView output;
+    private ConstraintLayout parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        parentLayout = findViewById(R.id.parentLayout);
         input = findViewById(R.id.input);
         output = findViewById(R.id.output);
     }
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         else if (n < 0)
             result = "Factorial of -ve numbers don't exist!";
         else
-            result = "Factorial = " + getFact(n);
+            result = n + "! = " + getFact(n);
         output.setText(result);
     }
 
@@ -81,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
         String result = "";
         long temp = n;
         long sum = 0;
+        int digits = getDigits(n);
         while(temp>0){
             int r = (int)temp%10;
             temp /= 10;
-            sum += (r*r*r);
+            sum += Math.pow(r, digits);
         }
         if (sum == n)
             result = n + " is an Armstrong Number";
@@ -93,7 +98,21 @@ public class MainActivity extends AppCompatActivity {
         output.setText(result);
     }
 
+    private int getDigits(long n){
+        int digits = 0;
+        while( n>0 ){
+            n /= 10;
+            digits++;
+        }
+        return digits;
+    }
+
     private double getInput(){
-        return Double.parseDouble(input.getText().toString());
+        String inputText = input.getText().toString();
+        if (inputText.isEmpty()){
+            Snackbar.make(parentLayout, "Please input a number!", Snackbar.LENGTH_SHORT).show();
+            return 0;
+        }
+        return Double.parseDouble(inputText);
     }
 }
