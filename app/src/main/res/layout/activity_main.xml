@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#D8DDDE">
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        >
+        android:layout_height="wrap_content">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -26,7 +21,6 @@
             app:titleTextColor="#FFF"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:backgroundTint="@color/colorPrimaryDark">
-
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -38,102 +32,243 @@
         android:gravity="center_vertical"
         android:minHeight="150dp"
         android:padding="32dp"
-        android:textSize="20sp"
-        android:text="Output"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarLayout"
-        app:layout_constraintVertical_bias="0.0">
+        android:textSize="@dimen/normalOutputSize"
+        android:text="@string/output"
+        android:textColor="#FFF">
 
     </TextView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Enter a number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/output"
-        app:layout_constraintVertical_bias="0.0"
-        app:boxBackgroundColor="#FFF">
+        android:layout_height="match_parent"
+        android:elevation="8dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/input"
-            android:inputType="number">
+            android:layout_height="match_parent"
+            android:id="@+id/bgImage"
+            android:src="@drawable/purple_background"
+            android:scaleType="centerCrop"/>
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inputParentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayout"
-        android:gravity="center"
-        android:stretchColumns="*"
-        android:layout_margin="32dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:hint="@string/enter_a_number"
+                app:boxBackgroundColor="#FFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TableRow
-            android:gravity="center">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:id="@+id/factButton"
-                android:text="Factorial"
-                android:onClick="fact"
-                android:layout_margin="10dp"/>
-            <Button
-                android:id="@+id/evenOddButton"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:text="Even/Odd"
-                android:onClick="evenOdd"
-                android:layout_margin="10dp"/>
-        </TableRow>
-        <TableRow
-            android:gravity="center">
-            <Button
-                android:id="@+id/primeCheckButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Check Prime"
-                android:onClick="checkPrime"
-                android:layout_margin="10dp"/>
-            <Button
-                android:id="@+id/armstrongCheckButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Check Amrstrong"
-                android:onClick="checkArmstrong"
-                android:layout_margin="10dp"/>
-        </TableRow>
-    </TableLayout>
+            <TextView
+                android:id="@+id/outputProperties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@string/output_properties"
+                android:textColor="#FFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputLayout"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="A creation of Nitish Devadiga"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLayout"
-        app:layout_constraintVertical_bias="1.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/checkBoxLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/outputProperties"
+                app:layout_constraintVertical_bias="0.0">
+
+                <CheckBox
+                    android:id="@+id/boldCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/bold"
+                    android:textColor="#FFF" />
+
+                <CheckBox
+                    android:id="@+id/italicCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/italic"
+                    android:textColor="#FFF" />
+
+                <CheckBox
+                    android:id="@+id/bigCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/big"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/outputBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@string/output_background"
+                android:textColor="#FFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxLayout"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/outputBackground"
+                app:layout_constraintVertical_bias="0.0">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/purpleSelect"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/purple"
+                    android:textColor="#FFF" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/redSelect"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/red"
+                    android:textColor="#FFF" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/blueSelect"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="0dp"
+                    android:text="@string/blue"
+                    android:textColor="#FFF" />
+            </RadioGroup>
+
+            <TableLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:stretchColumns="*"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TableRow android:gravity="center">
+
+                    <Button
+                        android:id="@+id/factButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:onClick="fact"
+                        android:text="@string/factorial" />
+
+                    <Button
+                        android:id="@+id/evenOddButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:onClick="evenOdd"
+                        android:text="@string/even_odd" />
+                </TableRow>
+
+                <TableRow android:gravity="center">
+
+                    <Button
+                        android:id="@+id/primeCheckButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:onClick="checkPrime"
+                        android:text="@string/check_prime" />
+
+                    <Button
+                        android:id="@+id/armstrongCheckButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:onClick="checkArmstrong"
+                        android:text="@string/check_amrstrong" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/by_line"
+                android:textColor="#FFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonLayout"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</LinearLayout>

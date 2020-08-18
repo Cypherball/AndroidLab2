@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">App 2</string>
+    <string name="output">Output</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="output_properties">Output Properties</string>
+    <string name="bold">Bold</string>
+    <string name="italic">Italic</string>
+    <string name="big">BIG</string>
+    <string name="output_background">Output Background</string>
+    <string name="purple">Purple</string>
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="factorial">Factorial</string>
+    <string name="even_odd">Even/Odd</string>
+    <string name="check_prime">Check Prime</string>
+    <string name="check_amrstrong">Check Amrstrong</string>
+    <string name="by_line">A creation of Nitish Devadiga</string>
 </resources>
